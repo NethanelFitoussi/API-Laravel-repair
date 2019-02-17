@@ -21,7 +21,7 @@ Route::post('login', 'API\AuthController@login');
 Route::post('logout', 'API\AuthController@logout');
 
 Route::apiResources([
-    'bikes' => 'API\BikeController'
+    'cliens' => 'API\ClientController'
 ]);
 
 Route::middleware('jwt.auth')->get('me', function(Request $request) {

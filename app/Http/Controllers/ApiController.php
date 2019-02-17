@@ -17,8 +17,8 @@ class ApiController extends Controller
  *     schemes={"http"},
  *     @SWG\Info(
  *         version="1.0",
- *         title="Custom Bikes",
- *         @SWG\Contact(name="Developer Contact", url="https://www.example.com"),
+ *         title="Repair Store",
+ *         @SWG\Contact(name="Developer Contact", url="https://www.nethanelfitoussi.com"),
  *     )
  * )
  */

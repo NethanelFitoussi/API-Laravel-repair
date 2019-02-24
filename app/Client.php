@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
 * @SWG\Definition(
-* definition="Repair Phone",
+* definition="Client",
 * required={"name", "phone_number"},
 * @SWG\Property(
 * property="name",
@@ -48,7 +48,6 @@ class Client extends Model
     	'name',
     	'phone_number',
     	'email',
-    	'dept',
-    	'loan'
-    ]
+    	'dept'
+	];
 }

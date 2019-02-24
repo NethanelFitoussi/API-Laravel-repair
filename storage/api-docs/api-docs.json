@@ -15,7 +15,7 @@
     ],
     "paths": {},
     "definitions": {
-        "Repair Phone": {
+        "Client": {
             "required": [
                 "name",
                 "phone_number"
@@ -45,6 +45,34 @@
                     "description": "Si l'on a pr\u00e9ter un t\u00e9l\u00e9phone",
                     "type": "string",
                     "example": "Iphone 4 blanc + clable"
+                }
+            }
+        },
+        "Client get product": {
+            "required": [
+                "client_id",
+                "produit_id"
+            ],
+            "properties": {
+                "comments": {
+                    "description": "Commentaire",
+                    "type": "text",
+                    "example": "Iphone acheter a Albert pour 500 ils Puis d\u00e9bloquer par nos soin"
+                }
+            }
+        },
+        "Comments Intervention": {
+            "required": [],
+            "properties": {
+                "comments": {
+                    "description": "Commentaire",
+                    "type": "text",
+                    "example": "Iphone acheter a Albert pour 500 ils Puis d\u00e9bloquer par nos soin"
+                },
+                "Name": {
+                    "description": "Commentaire",
+                    "type": "text",
+                    "example": "Iphone acheter a Albert pour 500 ils Puis d\u00e9bloquer par nos soin"
                 }
             }
         }

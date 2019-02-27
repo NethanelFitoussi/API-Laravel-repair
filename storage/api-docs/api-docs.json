@@ -13,7 +13,74 @@
     "schemes": [
         "http"
     ],
-    "paths": {},
+    "paths": {
+        "/api/clients": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "List Clients",
+                "responses": {
+                    "200": {
+                        "description": "Success: List all Clients",
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Invalid HTTP Method"
+                    }
+                }
+            }
+        },
+        "/api/Clients": {
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Create Client",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Json format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success: A Newly Created Client",
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    },
+                    "401": {
+                        "description": "Refused: Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Missing mandatory field"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Invalid HTTP Method"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
     "definitions": {
         "Client": {
             "required": [
@@ -73,6 +140,104 @@
                     "description": "Commentaire",
                     "type": "text",
                     "example": "Iphone acheter a Albert pour 500 ils Puis d\u00e9bloquer par nos soin"
+                }
+            }
+        },
+        "Itervention": {
+            "required": [
+                "password",
+                "price"
+            ],
+            "properties": {
+                "Password": {
+                    "description": "Mot de passe du telephone",
+                    "type": "string",
+                    "example": "*********"
+                },
+                "price": {
+                    "description": "Prix de l'intervention",
+                    "type": "string",
+                    "example": "39\u20ac"
+                }
+            }
+        },
+        "Prosuit": {
+            "required": [
+                "brand",
+                "model",
+                "price"
+            ],
+            "properties": {
+                "reference": {
+                    "description": "Mot de passe du telephone",
+                    "type": "string",
+                    "example": "IpXsMax128"
+                },
+                "brand": {
+                    "description": "Marque du produit",
+                    "type": "string",
+                    "example": "Apple"
+                },
+                "model": {
+                    "description": "Model du produit",
+                    "type": "string",
+                    "example": "Iphone Xs Max"
+                },
+                "price": {
+                    "description": "Prix de vente",
+                    "type": "string",
+                    "example": "300\u20ac"
+                },
+                "buying_price": {
+                    "description": "Prix a l'achat du produit",
+                    "type": "string",
+                    "example": "100\u20ac"
+                },
+                "stock": {
+                    "description": "How many pieces in stock",
+                    "type": "integer",
+                    "example": "10"
+                },
+                "visible": {
+                    "description": "If the product is visible or not",
+                    "type": "bolean",
+                    "example": "1 or 0"
+                }
+            }
+        },
+        "Status": {
+            "required": [
+                "types"
+            ],
+            "properties": {
+                "types": {
+                    "description": "Quel status de l'intervention",
+                    "type": "string",
+                    "example": "Terminer, en cour, payer, en attente, command\u00e9..."
+                }
+            }
+        },
+        "Intervention types": {
+            "required": [
+                "types"
+            ],
+            "properties": {
+                "types": {
+                    "description": "Quel type d'intervention",
+                    "type": "string",
+                    "example": "R\u00e9paration, Achat, Vente..."
+                }
+            }
+        },
+        "Product type": {
+            "required": [
+                "types"
+            ],
+            "properties": {
+                "types": {
+                    "description": "Type de produit",
+                    "type": "string",
+                    "example": "Computer, phone ...s"
                 }
             }
         }

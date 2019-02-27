@@ -37,6 +37,18 @@ use Illuminate\Database\Eloquent\Model;
 * type="string",
 * description="Prix a l'achat du produit",
 * example="100€"
+* ),
+* @SWG\Property(
+* property="stock",
+* type="integer",
+* description="How many pieces in stock",
+* example="10"
+* ),
+* @SWG\Property(
+* property="visible",
+* type="bolean",
+* description="If the product is visible or not",
+* example="1 or 0"
 * )
 * )
 */
@@ -48,6 +60,8 @@ class Produit extends Model
         'brand',
         'model',
         'price',
-        'buying_price'
+        'buying_price',
+        'stock',
+        'visible'
 	];
 }

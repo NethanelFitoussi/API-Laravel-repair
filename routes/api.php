@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Bike;
+use App\Client;
 use App\Http\Resources\BikesResource;
 
 /*

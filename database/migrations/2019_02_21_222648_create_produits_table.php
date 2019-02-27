@@ -20,6 +20,8 @@ class CreateProduitsTable extends Migration
             $table->string('model');
             $table->string('price');
             $table->string('buying_price');
+            $table->integer('stock');
+            $table->boolean('visible');
             $table->timestamps();
         });
     }

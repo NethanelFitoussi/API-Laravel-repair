@@ -152,6 +152,7 @@ return [
          * Package Service Providers...
          */
         \L5Swagger\L5SwaggerServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         
         /*
          * Application Service Providers...

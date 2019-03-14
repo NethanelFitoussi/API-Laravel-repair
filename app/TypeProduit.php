@@ -17,9 +17,19 @@ use Illuminate\Database\Eloquent\Model;
 * )
 */
 
-class Type_produit extends Model
+class TypeProduit extends Model
 {
     protected $fillable = [
     	'types'
-	];
+    ];
+    
+    /**
+    * Relationship.
+    *
+    * @var string
+    */
+    public function manufacturing_model() {
+        return $this->hasMany('App\ManufacturingModel');
+    }
 }
+

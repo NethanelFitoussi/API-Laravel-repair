@@ -31,12 +31,6 @@ use Illuminate\Database\Eloquent\Model;
 * type="string",
 * description="Argent du par le client",
 * example="430 euros"
-* ),
-* @SWG\Property(
-* property="loan",
-* type="string",
-* description="Si l'on a préter un téléphone",
-* example="Iphone 4 blanc + clable"
 * )
 * )
 */
@@ -50,4 +44,12 @@ class Client extends Model
     	'email',
     	'dept'
 	];
+	/**
+    * Relationship.
+    *
+    * @var string
+    */
+    public function produits() {
+        return $this->belongsToMany('App\Produit');
+    }
 }

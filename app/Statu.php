@@ -22,4 +22,13 @@ class Statu extends Model
     protected $fillable = [
     	'types'
 	];
+
+	/**
+    * Relationship.
+    *
+    * @var string
+    */
+    public function intervention() {
+        return $this->hasMany('App\Intervention');
+	}
 }

@@ -29,4 +29,13 @@ class Comment extends Model
     	'comments',
     	'name'
 	];
+
+	/**
+    * Relationship.
+    *
+    * @var string
+    */
+    public function intervention() {
+        return $this->belongsTo('App\Intervention');
+	}
 }

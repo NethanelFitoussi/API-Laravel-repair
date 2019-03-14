@@ -8,7 +8,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8081",
+    "host": "localhost:8000",
     "basePath": "",
     "schemes": [
         "http"
@@ -79,6 +79,138 @@
                     }
                 ]
             }
+        },
+        "/api/clients/{id}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get Clients by Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Display the specified client by id.",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success: Return the Client",
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Update Client",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Update the specified client by id.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Json format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success: Return the Client updated",
+                        "schema": {
+                            "$ref": "#/definitions/Client"
+                        }
+                    },
+                    "422": {
+                        "description": "Missing mandatory field"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete client",
+                "description": "Delete the specified client by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id to delete",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "204": {
+                        "description": "Success: successful deleted"
+                    }
+                }
+            }
+        },
+        "/api/produits": {
+            "post": {
+                "tags": [
+                    "Produits"
+                ],
+                "summary": "Create produit",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Json format",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Produit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success: A Newly Created Produit"
+                    },
+                    "401": {
+                        "description": "Refused: Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Missing mandatory field"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "405": {
+                        "description": "Invalid HTTP Method"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
         }
     },
     "definitions": {
@@ -115,19 +247,6 @@
                 }
             }
         },
-        "Client get product": {
-            "required": [
-                "client_id",
-                "produit_id"
-            ],
-            "properties": {
-                "comments": {
-                    "description": "Commentaire",
-                    "type": "text",
-                    "example": "Iphone acheter a Albert pour 500 ils Puis d\u00e9bloquer par nos soin"
-                }
-            }
-        },
         "Comments Intervention": {
             "required": [],
             "properties": {
@@ -161,7 +280,7 @@
                 }
             }
         },
-        "Prosuit": {
+        "Produit": {
             "required": [
                 "brand",
                 "model",
@@ -214,18 +333,6 @@
                     "description": "Quel status de l'intervention",
                     "type": "string",
                     "example": "Terminer, en cour, payer, en attente, command\u00e9..."
-                }
-            }
-        },
-        "Intervention types": {
-            "required": [
-                "types"
-            ],
-            "properties": {
-                "types": {
-                    "description": "Quel type d'intervention",
-                    "type": "string",
-                    "example": "R\u00e9paration, Achat, Vente..."
                 }
             }
         },

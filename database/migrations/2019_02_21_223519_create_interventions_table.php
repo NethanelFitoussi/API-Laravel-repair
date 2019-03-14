@@ -15,12 +15,11 @@ class CreateInterventionsTable extends Migration
     {
         Schema::create('interventions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('client_produit_id');
-            $table->unsignedInteger('type_intervention_id');
-            $table->unsignedInteger('comments_id');
-            $table->unsignedInteger('status_id');
             $table->string('password');
             $table->integer('price');
+            $table->unsignedInteger('client_produit_id');
+            $table->unsignedInteger('type_interventions_id');
+            $table->unsignedInteger('status_id');
             $table->timestamps();
         });
     }

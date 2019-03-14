@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Client;
+use App\Produit;
 use Validator;
-use App\Http\Resources\ClientsResource;
+use App\Http\Resources\ClientResource;
 
 class ClientController extends Controller
 {
@@ -36,6 +37,11 @@ class ClientController extends Controller
      */
     public function index()
     {
+        /* $user = Client::find(1);
+
+        foreach ($user->produits as $role) {
+            echo $role->reference;
+        } */
         $listClients = Client::all();
         return $listClients;
         // Using Paginate method We explain this later in the book
@@ -102,8 +108,8 @@ class ClientController extends Controller
             'email' => $request->email,
             'dept' => $request->dept,
         ]);
-        return $createClient;
-        //return new ClientResource($createClient);
+        //return $createClient;
+        return new ClientResource($createClient);
     }
 
     /**
@@ -111,10 +117,32 @@ class ClientController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @SWG\Get(
+     *     path="/api/clients/{id}",
+     *     tags={"Clients"},
+     *     summary="Get Clients by Id",
+     *     @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="Display the specified client by id.",
+     * 		),
+     *     @SWG\Response(
+     *          response=200,
+     *          description="Success: Return the Client",
+     *          @SWG\Schema(ref="#/definitions/Client")
+     *      ),
+     *     @SWG\Response(
+     *          response="404",
+     *          description="Not Found"
+     *   )
+     * ),
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        //
+        return new ClientResource($client);
     }
 
     /**
@@ -123,10 +151,45 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     * @SWG\Put(
+     *     path="/api/clients/{id}",
+     *     tags={"Clients"},
+     *     summary="Update Client",
+     *     @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="Update the specified client by id.",
+     * 		),
+     *     @SWG\Parameter(
+     * 			name="body",
+     * 			in="body",
+     * 			required=true,
+     * 			@SWG\Schema(ref="#/definitions/Client"),
+     * 			description="Json format",
+     * 		),
+     *     @SWG\Response(
+     *          response=200,
+     *          description="Success: Return the Client updated",
+     *          @SWG\Schema(ref="#/definitions/Client")
+     *      ),
+     *     @SWG\Response(
+     *          response="422",
+     *          description="Missing mandatory field"
+     *     ),
+     *     @SWG\Response(
+     *          response="404",
+     *          description="Not Found"
+     *   )
+     * ),
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Client $client)
     {
-        //
+        $client->update($request->only(['name', 'phone_number', 'email', 'dept']));
+
+        return new BikesResource($client);
     }
 
     /**
@@ -134,9 +197,33 @@ class ClientController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     *      @SWG\Delete(
+     *     path="/api/clients/{id}",
+     *     tags={"Clients"},
+     *     summary="Delete client",
+     *     description="Delete the specified client by id",
+     *     @SWG\Parameter(
+     *         description="Client id to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         type="integer",
+     *         format="int64"
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found"
+     *     ),
+     *     @SWG\Response(
+     *         response=204,
+     *         description="Success: successful deleted"
+     *     ),
+     * )
      */
     public function destroy($id)
     {
-        //
+        $deleteClientById = Client::find($id)->delete();
+        return response()->json([], 204);
     }
 }

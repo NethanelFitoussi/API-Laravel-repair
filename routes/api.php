@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Client;
+use App\Intervention;
 use App\Http\Resources\BikesResource;
 
 /*
@@ -16,12 +17,16 @@ use App\Http\Resources\BikesResource;
 */
 
 // Register Routes
-Route::post('register', 'API\AuthController@register');
+/* Route::post('register', 'API\AuthController@register');
 Route::post('login', 'API\AuthController@login');
-Route::post('logout', 'API\AuthController@logout');
+Route::post('logout', 'API\AuthController@logout'); */
 
 Route::apiResources([
-    'clients' => 'API\ClientController'
+    'clients' => 'API\ClientController',
+    'produits' => 'API\ProduitController',
+    'interventions' => 'API\InterventionController',
+    'models' => 'API\ManufacturingModelController',
+    'brands' => 'API\BrandController',
 ]);
 
 Route::middleware('jwt.auth')->get('me', function(Request $request) {

@@ -30,4 +30,19 @@ class Intervention extends Model
     	'password',
     	'price'
 	];
+
+	/**
+    * Relationship.
+    *
+    * @var string
+    */
+    public function status() {
+        return $this->belongsTo('App\Statu');
+	}
+	public function type_intervention() {
+		return $this->belongsTo('App\TypeIntervention');
+	}
+	public function comments() {
+		return $this->hasMany('App\Comment');
+	}
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
  /**
  * @SWG\Definition(
- *     definition="Bike",
+ *     definition="Produit",
  *     required={"make", "model", "year", "mods"},
  *     @SWG\Property(
  *          property="reference",
@@ -50,13 +50,17 @@ use Illuminate\Database\Eloquent\Model;
 class Produit extends Model
 {
     protected $fillable = [
+    	'name',
+    	'picture',
     	'reference',
-        'brand',
-        'model',
+        'color',
+        'description',
         'price',
-        'buying_price',
         'stock',
-        'visible'
+        'visible',
+        'buying_price',
+    	'brand_id',
+    	'type_produits_id'
     ];
     /**
     * Relationship.
@@ -66,8 +70,11 @@ class Produit extends Model
     public function clients() {
         return $this->belongsToMany('App\Client');
     }
-    public function manufacturing_model() {
-        return $this->belongsTo('App\ManufacturingModel', 'model_id');
+    public function type_produits() {
+        return $this->belongsTo('App\TypeProduit');
+    }
+    public function brand() {
+        return $this->belongsTo('App\Brand');
     }
 
 }

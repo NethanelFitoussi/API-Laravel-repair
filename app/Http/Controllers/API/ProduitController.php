@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Produit;
 use Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProduitsResource;
 
 class ProduitController extends Controller
 {
@@ -17,14 +18,12 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        
-
-        $user = Produit::find(1);
-
+        /* $user = Produit::find(1);
         echo $user->manufacturing_model->picture;
-        echo "<img src='".  $user->manufacturing_model->picture ."'></img>";
-        /* $listProduits = Produit::all();
-        return $listProduits; */
+        echo "<img src='".  $user->manufacturing_model->picture ."'></img>"; */
+
+        $listProduits = Produit::all();
+        return $listProduits;
     }
 
     /**
@@ -73,11 +72,17 @@ class ProduitController extends Controller
     {
         // Creating a record in a different way
         $createProduit = Produit::create([
+            'name' => $request->name,
+            'picture' => $request->picture,
+            'color' => $request->color,
+            'description' => $request->description,
             'reference' => $request->reference,
             'price' => $request->price,
             'buying_price' => $request->buying_price,
             'stock' => $request->stock,
             'visible' => $request->visible,
+            'brand_id' => $bike->id,
+            'type_produits_id' => $bike->id,
         ]);
         return $createProduit;
     }
@@ -88,9 +93,9 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Produit $produit)
     {
-        //
+        return new ProduitsResource($produit);
     }
 
     /**
@@ -100,9 +105,9 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Produit $produit)
     {
-        //
+        
     }
 
     /**

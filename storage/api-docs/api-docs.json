@@ -239,11 +239,29 @@
                     "description": "Argent du par le client",
                     "type": "string",
                     "example": "430 euros"
-                },
-                "loan": {
-                    "description": "Si l'on a pr\u00e9ter un t\u00e9l\u00e9phone",
+                }
+            }
+        },
+        "Client had Produit": {
+            "required": [
+                "clients_id",
+                "produits_id"
+            ],
+            "properties": {
+                "comments": {
+                    "description": "Comments",
                     "type": "string",
-                    "example": "Iphone 4 blanc + clable"
+                    "example": "Iphone buy on ..."
+                },
+                "client_id": {
+                    "description": "Association with: client_id",
+                    "type": "integer",
+                    "example": "1"
+                },
+                "produit_id": {
+                    "description": "Association with: produit_id",
+                    "type": "integer",
+                    "example": "2"
                 }
             }
         },
@@ -282,45 +300,41 @@
         },
         "Produit": {
             "required": [
-                "brand",
+                "make",
                 "model",
-                "price"
+                "year",
+                "mods"
             ],
             "properties": {
                 "reference": {
-                    "description": "Mot de passe du telephone",
+                    "description": "Reference number",
                     "type": "string",
-                    "example": "IpXsMax128"
-                },
-                "brand": {
-                    "description": "Marque du produit",
-                    "type": "string",
-                    "example": "Apple"
-                },
-                "model": {
-                    "description": "Model du produit",
-                    "type": "string",
-                    "example": "Iphone Xs Max"
+                    "example": "A2032"
                 },
                 "price": {
-                    "description": "Prix de vente",
+                    "description": "Price product",
                     "type": "string",
-                    "example": "300\u20ac"
+                    "example": "150\u20ac"
                 },
-                "buying_price": {
-                    "description": "Prix a l'achat du produit",
+                "buying_price'": {
+                    "description": "Price for the buyer",
                     "type": "string",
-                    "example": "100\u20ac"
+                    "example": "50\u20ac"
                 },
                 "stock": {
-                    "description": "How many pieces in stock",
-                    "type": "integer",
-                    "example": "10"
+                    "description": "Stock of this product",
+                    "type": "boleran",
+                    "example": "30"
                 },
                 "visible": {
-                    "description": "If the product is visible or not",
-                    "type": "bolean",
-                    "example": "1 or 0"
+                    "description": "If this product is in stock",
+                    "type": "string",
+                    "example": "0 or 1"
+                },
+                "client_id": {
+                    "description": "Association with: client_id",
+                    "type": "integer",
+                    "example": "1"
                 }
             }
         },

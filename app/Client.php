@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
 * @SWG\Property(
 * property="phone_number",
 * type="string",
-* description="Nom du client",
-* example="Nethanel Fitoussi"
+* description="Phone Number",
+* example="0123456789"
 * ),
 * @SWG\Property(
 * property="email",
